@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Employee List</title>
+{% endblock title %}
+
+{% block content %}
+    <h1>Salut tout le monde, voici mes questions </h1>
+    <a href="{% url 'app1:create' %}"><button>J'ai une question !</button></a>    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Question</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        {% if questions %}
+        <tbody>
+            {% for question in questions %}
+                <tr>
+                    <td>
+                        <a href="{% url 'app1:detail' question.id %}">{{ question }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'app1:edit' question.id %}"><button>Modifier</button></a>
+                        <a href="{% url 'app1:delete' question.id %}"><button>Delete</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+    
+        {% else %}
+            <p>Il n'y a aucune question pour le moment</p>
+        </tbody>
+        {% endif %}
+    </table>
+{% endblock%}
+</html>
+ 
