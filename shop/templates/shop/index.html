@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Employee List</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Bonjour voici la liste de nos produits</h1>
+<a href="{% url 'shop:create_product' %}"><button>J'ajoute un nouveau produit</button></a> 
+ {% if products %}
+    {% for product in products%}
+        <p>{{ product }} coûte {{ product.price}}€  <p>
+        <a href="{% url 'shop:details_product' product.id %}"><button>Detail du produit</button></a> 
+        <a href="{% url 'shop:delete_product' product.id %}"><button>Supprimer ce produit</button></a> 
+    {% endfor%}
+ {% endif %}
+{% endblock %}
