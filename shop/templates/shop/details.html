@@ -12,7 +12,7 @@
     {% if product.quantity > 0 %} 
         <form method="Post" action="{% url 'shop:buy_product' product.id %}" class="d-flex align-item-center justify-content-center">
             {% csrf_token %} 
-            <select class="form-select col-3 text-center" aria-label="Quantité désirée">
+            <select class="form-select col-3 text-center" aria-label="Quantité désirée" name="quantity">
                 {% with ''|center:product.quantity as range %}
                     {% for _ in range %}
                         <option value="{{forloop.counter}}">{{forloop.counter}}</option>
