@@ -19,7 +19,8 @@ def details(request, product_id ):
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         raise Http404("Ce produit n'existe pas")
-
+    imagePath = product.image.path
+    
     return render(request, 'shop/details.html', locals())
 
 def create(request):
