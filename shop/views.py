@@ -27,6 +27,22 @@ def create(request):
 
         form = ProductForm(request.POST)
         if form.is_valid():
+
+            try:
+                form.save()
+                return redirect('shop:all_product')
+            except:
+                pass
+    else:
+        form = ProductForm()
+    
+    return render(request, 'shop/create.html', locals())
+
+def create(request):
+    if request.method == "POST":
+
+        form = ProductForm(request.POST)
+        if form.is_valid():
             
             try:
                 form.save()
@@ -37,6 +53,24 @@ def create(request):
         form = ProductForm()
     
     return render(request, 'shop/create.html', locals())
+
+def edit(request, product_id):
+    try:
+        product = Product.objects.get(pk=product_id)
+    except Product.DoesNotExist:
+        raise Http404("Ce produits n'existe pas")
+    
+    form = ProductForm(instance=product)
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('shop:all_product')
+            except:
+                pass
+    return render(request, 'shop/edit.html', locals())
 
 def delete(request, product_id ):
     try:
