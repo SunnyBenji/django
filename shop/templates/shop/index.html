@@ -9,10 +9,12 @@
 <a href="{% url 'shop:create_product' %}"><button>J'ajoute un nouveau produit</button></a> 
  {% if products %}
     {% for product in products%}
-        <p>{{ product }} coûte {{ product.price}}€  <p>
-        <a href="{% url 'shop:details_product' product.id %}"><button>Detail du produit</button></a> 
-        <a href="{% url 'shop:edit_product' product.id %}"><button>Modifier ce produit</button></a> 
-        <a href="{% url 'shop:delete_product' product.id %}"><button>Supprimer ce produit</button></a> 
+        {% if product.quantity > 0 %}
+            <p>{{ product }} coûte {{ product.price}}€  <p>
+            <a href="{% url 'shop:details_product' product.id %}"><button>Detail du produit</button></a> 
+            <a href="{% url 'shop:edit_product' product.id %}"><button>Modifier ce produit</button></a> 
+            <a href="{% url 'shop:delete_product' product.id %}"><button>Supprimer ce produit</button></a> 
+        {% endif%}
     {% endfor%}
  {% endif %}
 {% endblock %}

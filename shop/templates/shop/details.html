@@ -6,5 +6,19 @@
 
 {% block content %}
     <p>{{ product }} coûte {{ product.price}}€<p>
-    <img src="  ..{{ product.image.url }}" width="250" height="250"/>
+    <img src="..{{ product.image.url }}" width="250" height="250"/>
+    <p>Il en reste actuellement {{product.quantity}}</p>
+    {% if product.quantity > 0 %} 
+        <form method="Post" action="{% url 'shop:buy_product' product.id %}">
+            {% csrf_token %} 
+            <select name="quantity">
+                {% with ''|center:product.quantity as range %}
+                    {% for _ in range %}
+                        <option value="{{forloop.counter}}">{{forloop.counter}}</option>
+                    {% endfor %}
+                {% endwith %}
+            </select>
+            <input type="submit" value="Achetez"/>
+        </form>
+    {% endif %}
 {% endblock %}
