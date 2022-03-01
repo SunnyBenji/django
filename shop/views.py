@@ -27,22 +27,6 @@ def create(request):
 
         form = ProductForm(request.POST)
         if form.is_valid():
-
-            try:
-                form.save()
-                return redirect('shop:all_product')
-            except:
-                pass
-    else:
-        form = ProductForm()
-    
-    return render(request, 'shop/create.html', locals())
-
-def create(request):
-    if request.method == "POST":
-
-        form = ProductForm(request.POST)
-        if form.is_valid():
             
             try:
                 form.save()
