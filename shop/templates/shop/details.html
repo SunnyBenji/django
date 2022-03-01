@@ -1,24 +1,25 @@
 {% extends 'shop/base.html' %}
 
 {% block title %}
-    <title>Employee List</title>
+    <title>Détail du produit</title>
 {% endblock title %}
 
 {% block content %}
-    <p>{{ product }} coûte {{ product.price}}€<p>
-    <img src="..{{ product.image.url }}" width="250" height="250"/>
-    <p>Il en reste actuellement {{product.quantity}}</p>
+    <h3 class="text-center text-dark-purple mb-4">Détail du produit : {{ product }}</h3>
+    <img src="..{{ product.image.url }}" width="250" height="250" class="d-block mx-auto" />
+    <p class="mt-3 text-center">{{product.description}}</p>
+    <p class="text-center">Le produit {{ product }} coûte {{ product.price}}€ et il en reste actuellement {{product.quantity}}</p>
     {% if product.quantity > 0 %} 
-        <form method="Post" action="{% url 'shop:buy_product' product.id %}">
+        <form method="Post" action="{% url 'shop:buy_product' product.id %}" class="d-flex align-item-center justify-content-center">
             {% csrf_token %} 
-            <select name="quantity">
+            <select class="form-select col-3 text-center" aria-label="Quantité désirée">
                 {% with ''|center:product.quantity as range %}
                     {% for _ in range %}
                         <option value="{{forloop.counter}}">{{forloop.counter}}</option>
                     {% endfor %}
                 {% endwith %}
             </select>
-            <input type="submit" value="Achetez"/>
+            <input type="submit" class="btn bg-purple text-white ml-2" value="Achetez"/>
         </form>
     {% endif %}
 {% endblock %}

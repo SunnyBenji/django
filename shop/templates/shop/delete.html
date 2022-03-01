@@ -6,19 +6,15 @@
 
 {% block content %}
 <form action="" method="POST">
+    <h3 class="text-center text-dark-purple mb-4">Suppression du produit : {{ product }}</h3>
     {% csrf_token %}
-    <br><br>
     <div class="alert alert-danger" role="alert">
-        Voulez-vous vraiment supprimer le produit "{{ product }}" ?
+        <p>Voulez-vous vraiment supprimer le produit "{{ product }}" ?</p>
     </div>
-    
-    <p>
-        <a href="{% url 'shop:all_product' %}"> <-- Go back</a>
-    </p>
-
-    <p>
-        <input class="btn btn-danger" type="submit" value="Supprimer">
-    </p>
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-danger mr-2" type="submit" value="Oui">
+        <a class="btn btn-secondary" href="{% url 'shop:all_product' %}">Non</a>
+    </div>
 </form>  
 {% endblock %} 
 </html>  
