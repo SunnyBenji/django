@@ -8,7 +8,8 @@
     <meta name="keywords" content="Shop, product">
     <meta name="author" content="Benjamin Burstein et Karen Azoulay">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     {% block title %}{% endblock %}
 </head>
 <body>
@@ -17,7 +18,6 @@
         <nav class="nav justify-content-center">
             <a class="nav-link mx-2 text-white" href="{% url 'shop:all_product' %}">Liste des produits</a>
             <a class="nav-link mx-2 text-white" href="{% url 'shop:create_product' %}">Créer un produit</a>
-            <a class="nav-link mx-2 text-white" href="#">Chatbox</a>
         </nav>
     </header>
     <div class="container min-vh-60">

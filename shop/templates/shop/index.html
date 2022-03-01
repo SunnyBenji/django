@@ -1,19 +1,32 @@
 {% extends 'shop/base.html' %}
 
 {% block title %}
-    <title>Liste des produits</title>
+<title>Liste des produits</title>
 {% endblock title %}
 
 {% block content %}
 <h3 class="text-center text-dark-purple">Liste de nos produits</h3>
- {% if products %}
+<div class="d-flex justify-content-between flex-wrap">
+    {% if products %}
     {% for product in products%}
-        {% if product.quantity > 0 %}
-            <p>{{ product }} coûte {{ product.price}}€  <p>
-            <a href="{% url 'shop:details_product' product.id %}"><button>Detail du produit</button></a> 
-            <a href="{% url 'shop:edit_product' product.id %}"><button>Modifier ce produit</button></a> 
-            <a href="{% url 'shop:delete_product' product.id %}"><button>Supprimer ce produit</button></a> 
-        {% endif%}
+    {% if product.quantity > 0 %}
+    <div class="card m-2">
+        <img src="..{{ product.image.url }}" class="card-img-top" alt="image du produit {{product}}" />
+        <div class="card-body">
+            <h5 class="card-title">{{ product }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Prix : {{ product.price }}€</li>
+            <li class="list-group-item">Quantité : {{ product.quantity }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{% url 'shop:details_product' product.id %}" class="card-link">Détail </a>
+            <a href="{% url 'shop:edit_product' product.id %}" class="card-link">Modifier</a>
+            <a href="{% url 'shop:delete_product' product.id %}" class="card-link">Supprimer</a>
+        </div>
+    </div>
+    {% endif%}
     {% endfor%}
- {% endif %}
+    {% endif %}
+</div>
 {% endblock %}

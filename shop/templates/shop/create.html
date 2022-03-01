@@ -18,7 +18,7 @@
             {{ form.description|as_crispy_field }}
         </div>
         <div class="col-12">
-            {{ form.image2|as_crispy_field }}
+            {{ form.image|as_crispy_field }}
         </div>
         <div class="col-6">
             {{ form.price|as_crispy_field }}
@@ -27,6 +27,7 @@
             {{ form.quantity|as_crispy_field }}
         </div>
     </div>
+
     <input type="submit" value="Valider" class="btn mt-2 bg-purple text-white d-block mx-auto"/>
     <p class="fs-6 text-warning mt-4 text-center">Tous les champs contenants * sont obligatoires</p>
 </form>  

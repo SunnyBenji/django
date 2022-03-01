@@ -27,6 +27,8 @@
             {{ form.quantity|as_crispy_field }}
         </div>
     </div>
+    <img src="..{{ product.image.url }}">
+
     <input type="submit" value="Valider" class="btn mt-2 bg-purple text-white d-block mx-auto"/>
     <p class="fs-6 text-warning mt-4 text-center">Tous les champs contenants * sont obligatoires</p>
 </form> 
