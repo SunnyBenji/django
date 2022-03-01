@@ -1,28 +1,34 @@
 {% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Create</title>
+    <title>Modification des produits</title>
 {% endblock title %}
 
 {% block content %} 
-<h1>Avez-vous une question à poser</h1>
-<div class="container">  
-    <br>  
-    <div class="form-group row">  
-        <label class="col-sm-1 col-form-label"></label>  
-        <div class="col-sm-4">  
-            <h2>Êtes-vous sur de vouloir modifier le produit suivant :</h2>  
-            <h4>{{ product }}</h4>
-        </div>  
-        <p>
-            <a href="{% url 'shop:all_product' %}"> <-- Go back</a>
-        </p>
-    </div>  
-</div>
+<h3 class="text-center text-dark-purple">Modification du produit : {{ product }}</h3>
+
 <form method="post" enctype="multipart/form-data">  
     {% csrf_token %} 
-    {{ form.as_p }}
-    <input type="submit" value="Modifier mon produit"/>
+    <div class="row">
+        <div class="col-12">
+            {{ form.name|as_crispy_field }}
+        </div>
+        <div class="col-12">
+            {{ form.description|as_crispy_field }}
+        </div>
+        <div class="col-12">
+            {{ form.image|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.price|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.quantity|as_crispy_field }}
+        </div>
+    </div>
+    <input type="submit" value="Valider" class="btn mt-2 bg-purple text-white d-block mx-auto"/>
+    <p class="fs-6 text-warning mt-4 text-center">Tous les champs contenants * sont obligatoires</p>
 </form> 
 {% endblock %} 
 </html>  

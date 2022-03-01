@@ -1,5 +1,7 @@
 from email.policy import default
+from tkinter import Widget
 from django.db import models
+from django.forms import FileInput
 
 class Product(models.Model):
     name = models.CharField(max_length=55)

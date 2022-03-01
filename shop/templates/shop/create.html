@@ -8,7 +8,7 @@
 {% block content %}
 <h3 class="text-center text-dark-purple">Créer un nouveau produit</h3>
 
-<form method="post" enctype="multipart/form-data" class="d-block">  
+<form method="post" enctype="multipart/form-data">  
     {% csrf_token %} 
     <div class="row">
         <div class="col-12">
@@ -18,7 +18,7 @@
             {{ form.description|as_crispy_field }}
         </div>
         <div class="col-12">
-            {{ form.image|as_crispy_field }}
+            {{ form.image2|as_crispy_field }}
         </div>
         <div class="col-6">
             {{ form.price|as_crispy_field }}
