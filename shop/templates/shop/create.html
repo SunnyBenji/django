@@ -1,15 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'shop/base.html' %}
 
 {% block title %}
-    <title>Create</title>
+    <title>Création d'un produit</title>
 {% endblock title %}
 
 {% block content %}
-<h1>Créer un nouveau produits</h1>
+<h3 class="text-center text-dark-purple">Créer un nouveau produit</h3>
 <form method="post" enctype="multipart/form-data">  
     {% csrf_token %} 
     {{ form.as_p }}
-    <input type="submit" value="Créer le produits"/>
+    <input type="submit" value="Valider"/>
 </form>  
 {% endblock %}
 </html>  

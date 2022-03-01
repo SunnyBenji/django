@@ -1,12 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'shop/base.html' %}
 
 {% block title %}
-    <title>Employee List</title>
+    <title>Liste des produits</title>
 {% endblock title %}
 
 {% block content %}
-<h1>Bonjour voici la liste de nos produits</h1>
-<a href="{% url 'shop:create_product' %}"><button>J'ajoute un nouveau produit</button></a> 
+<h3 class="text-center text-dark-purple">Liste de nos produits</h3>
  {% if products %}
     {% for product in products%}
         <p>{{ product }} coûte {{ product.price}}€  <p>
