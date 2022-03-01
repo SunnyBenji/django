@@ -19,9 +19,24 @@ def details(request, product_id ):
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         raise Http404("Ce produit n'existe pas")
-    imagePath = product.image.path
+
     
     return render(request, 'shop/details.html', locals())
+    
+def buy(request, product_id):
+    try:
+        product = Product.objects.get(pk=product_id)
+    except Product.DoesNotExist:
+        raise Http404("Ce produit n'existe pas")
+
+    if request.method == "POST":
+        quantity = request.POST.get('quantity','')
+        product.quantity = int(product.quantity) - int(quantity)
+        try:
+            product.save()
+            return redirect('shop:details_product', product_id)
+        except:
+            pass
 
 def create(request):
     form = ProductForm()
@@ -43,7 +58,7 @@ def edit(request, product_id):
     form = ProductForm(instance=product)
 
     if request.method == "POST":
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST,request.FILES, instance=product)
         if form.is_valid():
             try:
                 form.save()
