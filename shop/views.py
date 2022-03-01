@@ -19,22 +19,18 @@ def details(request, product_id ):
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         raise Http404("Ce produit n'existe pas")
-
+    imagePath = product.image.path
+    
     return render(request, 'shop/details.html', locals())
 
 def create(request):
+    form = ProductForm()
     if request.method == "POST":
-
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
+            form.save()
+            return redirect('shop:all_product')
             
-            try:
-                form.save()
-                return redirect('shop:all_product')
-            except:
-                pass
-    else:
-        form = ProductForm()
     
     return render(request, 'shop/create.html', locals())
 
