@@ -3,7 +3,7 @@
 
 Projet réalisé par Benjamin Burstein et Karen Azoulay.
 
-## Librairie utilisée
+## Librairies utilisées
 - Bootstrap
 - Pillow
 - Crispy Forms
