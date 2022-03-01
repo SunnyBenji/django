@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Create</title>
+{% endblock title %}
+
+{% block content %} 
+<h1>Avez-vous une question à poser</h1>
+<div class="container">  
+    <br>  
+    <div class="form-group row">  
+        <label class="col-sm-1 col-form-label"></label>  
+        <div class="col-sm-4">  
+            <h2>Êtes-vous sur de vouloir modifier le produit suivant :</h2>  
+            <h4>{{ product }}</h4>
+        </div>  
+        <p>
+            <a href="{% url 'shop:all_product' %}"> <-- Go back</a>
+        </p>
+    </div>  
+</div>
+<form method="post" enctype="multipart/form-data">  
+    {% csrf_token %} 
+    {{ form.as_p }}
+    <input type="submit" value="Modifier mon produit"/>
+</form> 
+{% endblock %} 
+</html>  
