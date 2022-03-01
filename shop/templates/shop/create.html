@@ -1,4 +1,5 @@
 {% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     <title>Création d'un produit</title>
@@ -6,23 +7,28 @@
 
 {% block content %}
 <h3 class="text-center text-dark-purple">Créer un nouveau produit</h3>
-<form method="post" enctype="multipart/form-data" class="">  
-    <div class="mb-3">
-        <label for="formFile" class="form-label">Default file input example</label>
-        <input class="form-control" type="file" id="formFile">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">{{ form.name.label }}</label>
-        {{ form.name }}
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">{{ form.description }}</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
+
+<form method="post" enctype="multipart/form-data" class="d-block">  
     {% csrf_token %} 
-    {{ form.as_p }}
-    <input type="submit" value="Valider"/>
+    <div class="row">
+        <div class="col-12">
+            {{ form.name|as_crispy_field }}
+        </div>
+        <div class="col-12">
+            {{ form.description|as_crispy_field }}
+        </div>
+        <div class="col-12">
+            {{ form.image|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.price|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.quantity|as_crispy_field }}
+        </div>
+    </div>
+    <input type="submit" value="Valider" class="btn mt-2 bg-purple text-white d-block mx-auto"/>
+    <p class="fs-6 text-warning mt-4 text-center">Tous les champs contenants * sont obligatoires</p>
 </form>  
 {% endblock %}
 </html>  
