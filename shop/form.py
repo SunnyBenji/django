@@ -1,10 +1,8 @@
 from django import forms
-from django.forms import Form
+from django.forms import ModelForm
 from .models import Product  
 
-class ProductForm(forms.Form):  
-    name = forms.CharField()
-    description = forms.CharField()
-    image = forms.ImageField()
-    price =  forms.DecimalField()
-    quantity = forms.IntegerField()
+class ProductForm(forms.ModelForm):  
+    class Meta:  
+        model = Product  
+        fields = "__all__"

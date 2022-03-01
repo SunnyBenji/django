@@ -30,11 +30,6 @@ def create(request):
         form = QuestionForm(request.POST)
         if form.is_valid():
             try:
-                imageLue = Image.open("upload/")
-                imageLue.save('sauvegarde/png_version.png', 'png')
-            except:
-                pass
-            try:
                 form.save()
                 return redirect('app1:index')
             except:
