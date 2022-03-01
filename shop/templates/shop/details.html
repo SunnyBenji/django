@@ -1,9 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'shop/base.html' %}
 
 {% block title %}
     <title>Employee List</title>
 {% endblock title %}
 
 {% block content %}
+    {% load media %}
     <p>{{ product }} coûte {{ product.price}}€<p>
+    <img src="{% media  product.image.name %}" width="250" height="250"/>
 {% endblock %}
